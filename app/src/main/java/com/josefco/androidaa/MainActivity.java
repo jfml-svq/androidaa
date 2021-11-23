@@ -2,21 +2,39 @@ package com.josefco.androidaa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button addTeam, listTeams, listPlayers, listGames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button addteambtn = findViewById(R.id.addteambtn);
+        Button listTeamsbtn = findViewById(R.id.listTeamsbtn);
+        Button listPlayersbtn = findViewById(R.id.listPlayersbtn);
+        Button listGamesbtn = findViewById(R.id.listGamesbtn);
+
+
+        listTeamsbtn.setOnClickListener(v -> {
+            Intent intentListTeam = new Intent(v.getContext(),ListTeamsActivity.class);
+            startActivity(intentListTeam);
+        });
+
     }
 
+
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_manu, menu);
+        // Inflado del menu del action bar.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
@@ -28,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
                 // hacer algo
                 return true;
             case R.id.listTeams:
-                // hacer algo
+                Intent intentListTeam = new Intent(this, ListTeamsActivity.class);
+                startActivity(intentListTeam);
                 return true;
             case R.id.listGames:
                 // hacer algo

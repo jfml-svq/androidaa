@@ -4,4 +4,5 @@
     <string name="list_teams">List Teams</string>
     <string name="list_players">List Players</string>
     <string name="list_games">List Games</string>
+    <string name="add_player">add Player</string>
 </resources>

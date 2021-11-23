@@ -15,25 +15,25 @@
         android:paddingRight="10dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/addteambtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_team"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/listTeamsbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/list_teams" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/listPlayersbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/list_players" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/listGamesbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/list_games" />
