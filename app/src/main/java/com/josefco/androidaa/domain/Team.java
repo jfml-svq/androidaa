@@ -13,15 +13,15 @@ public class Team {
     private int id_team;
     @ColumnInfo
     private String name;
-    @ColumnInfo
-    private Date create_date;
+    /*@ColumnInfo
+    private Date create_date;*/
     @ColumnInfo
     private String category;
 
     public Team(int id_team, String name, Date create_date, String category) {
         this.id_team = id_team;
         this.name = name;
-        this.create_date = create_date;
+        /*this.create_date = create_date;*/
         this.category = category;
     }
 
@@ -44,13 +44,13 @@ public class Team {
         this.name = name;
     }
 
-    public Date getCreate_date() {
+    /*public Date getCreate_date() {
         return create_date;
     }
 
     public void setCreate_date(Date create_date) {
         this.create_date = create_date;
-    }
+    }*/
 
     public String getCategory() {
         return category;

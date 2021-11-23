@@ -1,4 +1,7 @@
 package com.josefco.androidaa.dao;
 
-public class GameDao {
+import androidx.room.Dao;
+
+@Dao
+public interface GameDao {
 }

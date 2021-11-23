@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AndroidAA</string>
+    <string name="add_team">Add Team</string>
+    <string name="list_teams">List Teams</string>
+    <string name="list_players">List Players</string>
+    <string name="list_games">List Games</string>
 </resources>
