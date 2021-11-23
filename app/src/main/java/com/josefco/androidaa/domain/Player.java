@@ -18,10 +18,10 @@ public class Player {
     private String last_name;
     @ColumnInfo
     private String phone;
-    /*@ColumnInfo
+    @ColumnInfo
     private Date date_birth;
     @ColumnInfo
-    private int id_team;*/
+    private int id_team;
 
     public Player(int id_player, String name, String last_name, String phone) {
         this.id_player = id_player;
@@ -32,6 +32,22 @@ public class Player {
 
     public Player(){
 
+    }
+
+    public int getId_team() {
+        return id_team;
+    }
+
+    public Date getDate_birth() {
+        return date_birth;
+    }
+
+    public void setDate_birth(Date date_birth) {
+        this.date_birth = date_birth;
+    }
+
+    public void setId_team(int id_team) {
+        this.id_team = id_team;
     }
 
     public int getId_player() {

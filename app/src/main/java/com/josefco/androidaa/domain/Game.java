@@ -12,15 +12,15 @@ public class Game {
 
     @PrimaryKey(autoGenerate = true)
     private int id_game;
-    /*@ColumnInfo
-    private Date fecha;
     @ColumnInfo
+    private Date fecha;
+    /*@ColumnInfo
     private String lat;
     @ColumnInfo
-    private String lon;
+    private String lon;*/
     @ColumnInfo
     private int id_local_team;
     @ColumnInfo
-    private int id_vitit_team;*/
+    private int id_vitit_team;
 
 }
