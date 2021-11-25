@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".AddTeamActivity">
 
     <LinearLayout
@@ -12,9 +13,29 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_addteam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="addteam"
             android:text="@string/add_team" />
+
+        <EditText
+            android:id="@+id/team_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/team_name"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/team_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/team_category"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

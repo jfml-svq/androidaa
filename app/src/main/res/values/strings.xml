@@ -6,4 +6,8 @@
     <string name="list_games">List Games</string>
     <string name="add_player">add Player</string>
     <string name="add_games">Add Games</string>
+    <string name="team_name">Team name</string>
+    <string name="team_category">Team Category</string>
+    <string name="delete_team">Delete team</string>
+    <string name="edit_team">Edit team</string>
 </resources>

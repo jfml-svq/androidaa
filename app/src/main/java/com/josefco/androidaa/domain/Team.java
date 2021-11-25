@@ -18,12 +18,17 @@ public class Team {
     @ColumnInfo
     private String category;
 
-    public Team(int id_team, String name, Date create_date, String category) {
+    public Team(int id_team, String name /*Date create_date*/, String category) {
         this.id_team = id_team;
         this.name = name;
         /*this.create_date = create_date;*/
         this.category = category;
     }
+
+    /*public Team(String name, String category) {
+        this.name = name;
+        this.category = category;
+    }*/
 
     public Team() {
     }
@@ -59,4 +64,11 @@ public class Team {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    @Override
+    public String toString() {
+        return "Team name=" + name + " category= " + category;
+    }
 }
+
+

@@ -25,6 +25,10 @@ public class DetailsTeamActivity extends AppCompatActivity {
                 Intent intentListGamee = new Intent(this, ListGamesActivity.class);
                 startActivity(intentListGamee);
                 return true;
+            case R.id.addTeam:
+                Intent intentAddTeamm= new Intent(this, AddTeamActivity.class);
+                startActivity(intentAddTeamm);
+                return true;
             case R.id.addPlayer:
                 Intent intentAddPlayerr= new Intent(this, AddPlayerActivity.class);
                 startActivity(intentAddPlayerr);
