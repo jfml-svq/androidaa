@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,10 +23,27 @@ public class MainActivity extends AppCompatActivity {
         Button listGamesbtn = findViewById(R.id.listGamesbtn);
 
 
-        listTeamsbtn.setOnClickListener(v -> {
-            Intent intentListTeam = new Intent(v.getContext(),ListTeamsActivity.class);
-            startActivity(intentListTeam);
+        addteambtn.setOnClickListener(v -> {
+            Intent intentAddTeam = new Intent(v.getContext(),AddTeamActivity.class);
+            startActivity(intentAddTeam);
         });
+
+        listTeamsbtn.setOnClickListener(v -> {
+            Intent intentListTeams = new Intent(v.getContext(),ListTeamsActivity.class);
+            startActivity(intentListTeams);
+        });
+
+        listPlayersbtn.setOnClickListener(v -> {
+            Intent intentListPlayers = new Intent(v.getContext(),ListPlayersActivity.class);
+            startActivity(intentListPlayers);
+        });
+
+        listGamesbtn.setOnClickListener(v -> {
+            Intent intentListGames = new Intent(v.getContext(),ListPlayersActivity.class);
+            startActivity(intentListGames);
+        });
+
+
 
     }
 
@@ -43,17 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.addTeam:
-                // hacer algo
+                Intent intentAddTeam = new Intent(this,AddTeamActivity.class);
+                startActivity(intentAddTeam);
                 return true;
             case R.id.listTeams:
-                Intent intentListTeam = new Intent(this, ListTeamsActivity.class);
-                startActivity(intentListTeam);
+                Intent intentListTeams = new Intent(this, ListTeamsActivity.class);
+                startActivity(intentListTeams);
                 return true;
             case R.id.listGames:
-                // hacer algo
+                Intent intentListGames = new Intent(this, ListGamesActivity.class);
+                startActivity(intentListGames);
                 return true;
             case R.id.listPlayers:
-                // hacer algo
+                Intent intentListPlayers = new Intent(this,ListPlayersActivity.class);
+                startActivity(intentListPlayers);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListTeamsActivity">
+    tools:context=".ListGamesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,9 +12,10 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/list_teams" />
+            android:text="@string/list_games" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

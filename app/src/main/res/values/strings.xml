@@ -5,4 +5,5 @@
     <string name="list_players">List Players</string>
     <string name="list_games">List Games</string>
     <string name="add_player">add Player</string>
+    <string name="add_games">Add Games</string>
 </resources>

@@ -3,14 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/addPlayer"
-        android:icon="@drawable/add"
-        android:title="@string/add_player"
+        android:id="@+id/listPlayers"
+        android:icon="@drawable/athlete"
+        android:title="@string/list_players"
         app:showAsAction="always" />
     <item
-        android:icon="@drawable/game"
-        android:title="@string/list_games" />
+        android:id="@+id/listTeams"
+        android:icon="@drawable/football"
+        android:title="@string/list_games"
+        app:showAsAction="always" />
     <item
-        android:icon="@drawable/player"
-        android:title="@string/list_players" />
+        android:id="@+id/addPlayer"
+        android:icon="@drawable/add"
+        android:title="@string/add_player" />
 </menu>

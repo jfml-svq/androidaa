@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAA">
         <activity
+            android:name=".AddGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsTeamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListGamesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailsPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPlayersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddTeamActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListTeamsActivity"
             android:exported="false" />
         <activity
