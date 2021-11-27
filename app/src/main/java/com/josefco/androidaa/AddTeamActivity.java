@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,10 +17,22 @@ import com.josefco.androidaa.domain.Team;
 
 public class AddTeamActivity extends AppCompatActivity {
 
+
+    private Button btn_listTeamAdd;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_team);
+
+        btn_listTeamAdd = findViewById(R.id.btn_listTeamAdd);
+
+        btn_listTeamAdd.setOnClickListener(v -> {
+            Intent intentListTeams = new Intent(v.getContext(),ListTeamsActivity.class);
+            startActivity(intentListTeams);
+        });
+
     }
 
 
@@ -29,7 +42,8 @@ public class AddTeamActivity extends AppCompatActivity {
         EditText etteamcategory = findViewById(R.id.team_category);
 
         if (etteamname.getText().toString().equals("")){
-            Toast.makeText(this, "Tienes que escribir el nombre del equipo!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.write_team), Toast.LENGTH_SHORT).show();
+            return;
         }
 
         String teamname = etteamname.getText().toString();

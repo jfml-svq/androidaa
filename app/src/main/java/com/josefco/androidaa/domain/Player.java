@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
+import com.josefco.androidaa.R;
 
 @Entity
 public class Player {
@@ -21,22 +21,34 @@ public class Player {
     /*@ColumnInfo
     private Date birthday;*/
     @ColumnInfo
-    private int id_team;
+    //private int id_team;
+    private String name_Team;
 
-    public Player(int id_player, String name, String last_name, String phone) {
+    /*public Player(int id_player, String name, String last_name, String phone) {
         this.id_player = id_player;
         this.name = name;
         this.last_name = last_name;
         this.phone = phone;
+    }*/
+
+    public Player(int id_player, String name, String last_name, String phone, String name_Team) {
+        this.id_player = id_player;
+        this.name = name;
+        this.last_name = last_name;
+        this.phone = phone;
+        this.name_Team = name_Team;
     }
 
     public Player(){
 
     }
 
-    public int getId_team() {
-        return id_team;
+    @Override
+    public String toString() {
+        return name + " " + last_name + " / Team - " + name_Team;
     }
+
+
 
     /*public Date getDate_birth() {
         return birthday;
@@ -46,8 +58,12 @@ public class Player {
         this.birthday = date_birth;
     }*/
 
-    public void setId_team(int id_team) {
-        this.id_team = id_team;
+    public String getName_Team() {
+        return name_Team;
+    }
+
+    public void setName_Team(String name_Team) {
+        this.name_Team = name_Team;
     }
 
     public int getId_player() {

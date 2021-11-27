@@ -12,12 +12,4 @@
         android:icon="@drawable/football"
         android:title="@string/list_games"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/addTeam"
-        android:icon="@drawable/group"
-        android:title="@string/add_team" />
-    <item
-        android:id="@+id/addPlayer"
-        android:icon="@drawable/add"
-        android:title="@string/add_player" />
 </menu>

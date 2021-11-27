@@ -10,4 +10,13 @@
     <string name="team_category">Team Category</string>
     <string name="delete_team">Delete team</string>
     <string name="edit_team">Edit team</string>
+    <string name="write_team">You have to write the name of the team!</string>
+    <string name="player_name">Player Name</string>
+    <string name="last_name_player">Player Last Name </string>
+    <string name="phone">Phone</string>
+    <string name="write_name_player">You must write the name of the player!!</string>
+    <string name="team">team</string>
+    <string name="choose_team">You must select a Team</string>
+    <string name="player_added">Player added</string>
+    <string name="select_team">Select team</string>
 </resources>

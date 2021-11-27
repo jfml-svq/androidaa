@@ -13,6 +13,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btn_listTeamAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list_teams" />
+
+        <Button
             android:id="@+id/btn_addteam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

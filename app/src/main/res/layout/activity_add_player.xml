@@ -12,10 +12,40 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/addPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="addPlayer"
             android:text="@string/add_player" />
+
+        <EditText
+            android:id="@+id/etNamePlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/player_name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etLastNamePlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/last_name_player"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/phone"
+            android:inputType="textPersonName" />
+
+        <Spinner
+            android:id="@+id/spTeams"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

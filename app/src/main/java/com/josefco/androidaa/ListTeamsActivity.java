@@ -1,9 +1,14 @@
 package com.josefco.androidaa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.DatabaseConfiguration;
+import androidx.room.InvalidationTracker;
 import androidx.room.Room;
+import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -11,9 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.josefco.androidaa.dao.GameDao;
+import com.josefco.androidaa.dao.PlayerDao;
+import com.josefco.androidaa.dao.TeamDao;
 import com.josefco.androidaa.db.AppDatabase;
 import com.josefco.androidaa.domain.Team;
 
@@ -24,12 +33,20 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
 
     public List<Team> teams;
     private ArrayAdapter<Team> teamAdapter;
+    Button btnAddTeam, btnAddPlayer;
+
+    private Button addteambtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_teams);
+
+
+        btnAddPlayer = findViewById(R.id.btnAddPlayer);
+        addteambtn = findViewById(R.id.btnAddTeam);
+
 
         teams = new ArrayList<>();
         ListView lvlistTeams = findViewById(R.id.lvListTeams);
@@ -66,6 +83,24 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
     }
 
 
+    //botones arriba activity
+    public void onClick(View view) {
+        Intent miIntent=null;
+        switch (view.getId()){
+            case R.id.btnAddTeam:
+                miIntent=new Intent(this,AddTeamActivity.class);
+                break;
+            case R.id.btnAddPlayer:
+                miIntent=new Intent(this,AddPlayerActivity.class);
+                break;
+        }
+        if (miIntent!=null){
+            startActivity(miIntent);
+        }
+
+    }
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.teams_menu, menu);
@@ -84,14 +119,6 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
                 Intent intentListGamee = new Intent(this, ListGamesActivity.class);
                 startActivity(intentListGamee);
                 return true;
-            case R.id.addTeam:
-                Intent intentAddTeamm= new Intent(this, AddTeamActivity.class);
-                startActivity(intentAddTeamm);
-                return true;
-            case R.id.addPlayer:
-                Intent intentAddPlayerr= new Intent(this, AddPlayerActivity.class);
-                startActivity(intentAddPlayerr);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -107,12 +134,13 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
-        AdapterView.AdapterContextMenuInfo info =
-                (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        final int itemSeleccionado = info.position;
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        Team team = teamAdapter.getItem(info.position);
 
         switch (item.getItemId()) {
             case R.id.delete_team:
+                deleteTeam(team);
                 Toast.makeText(this,"Borrar",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.edit_team:
@@ -121,6 +149,15 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void deleteTeam(Team team) {
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+
+        String name_Team = team.getName();
+        db.playerDao().deletePlayerByNameTeam(name_Team);
+        db.teamDao().delete(team);
+        teamAdapter.notifyDataSetChanged();
     }
 
 

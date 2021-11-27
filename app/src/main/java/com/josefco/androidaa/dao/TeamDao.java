@@ -1,6 +1,8 @@
 package com.josefco.androidaa.dao;
 
 
+import android.widget.AdapterView;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,12 +14,20 @@ import java.util.List;
 
 @Dao
 public interface TeamDao {
+
+
     @Query("SELECT * FROM team")
     List<Team> getAll();
+
+    @Query("Select * FROM TEAM")
+    List<Team> getNameTeams();
+
 
     @Insert
     void insert (Team team);
 
     @Delete
-    void delete (Team team);
+    void delete(Team team);
+
+
 }

@@ -12,9 +12,15 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/addteambtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/list_players" />
+            android:onClick="onClick"
+            android:text="@string/add_player" />
+
+        <ListView
+            android:id="@+id/lvListPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
