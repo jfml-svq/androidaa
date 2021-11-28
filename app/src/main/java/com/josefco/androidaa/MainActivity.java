@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         listGamesbtn.setOnClickListener(v -> {
-            Intent intentListGames = new Intent(v.getContext(),ListPlayersActivity.class);
+            Intent intentListGames = new Intent(v.getContext(),ListGamesActivity.class);
             startActivity(intentListGames);
         });
 

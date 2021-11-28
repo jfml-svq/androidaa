@@ -1,6 +1,7 @@
 package com.josefco.androidaa.dao;
 
 
+import android.database.Cursor;
 import android.widget.AdapterView;
 
 import androidx.room.Dao;
@@ -21,6 +22,9 @@ public interface TeamDao {
 
     @Query("Select * FROM TEAM")
     List<Team> getNameTeams();
+
+    @Query("SELECT * FROM team WHERE id_team = :id_team")
+    Cursor getTeamByID(String id_team);
 
 
     @Insert

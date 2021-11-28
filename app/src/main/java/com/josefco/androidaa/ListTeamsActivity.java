@@ -164,6 +164,45 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        String informacion="id: "+teams.get(position).getId_team()+"\n";
+        informacion+="Nombre: "+teams.get(position).getName()+"\n";
+        informacion+="Telefono: "+teams.get(position).getCategory()+"\n";
+
+        Toast.makeText(getApplicationContext(),informacion,Toast.LENGTH_SHORT).show();
+
+        Team team = teams.get(position);
+
+        Intent intent = new Intent(ListTeamsActivity.this, DetailsTeamActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("team", team);
+
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+
+
+        /*Team team=teams.get(position);
+
+        Intent intent=new Intent(ListTeamsActivity.this,DetailsTeamActivity.class);
+
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("team",team);
+
+        intent.putExtras(bundle);
+        startActivity(intent);*/
+
+        /*Team team = teams.get(position);
+
+
+        Intent intent = new Intent(this, DetailsTeamActivity.class);
+        intent.putExtra("team", team);*/
+        /*intent.putExtra("id_team", team.getId_team());
+        intent.putExtra("team_name",team.getName());
+        intent.putExtra("category",team.getCategory());*/
+
+        /*startActivity(intent);*/
+
     }
 
     @Override

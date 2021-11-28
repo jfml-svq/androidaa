@@ -19,4 +19,7 @@
     <string name="choose_team">You must select a Team</string>
     <string name="player_added">Player added</string>
     <string name="select_team">Select team</string>
+    <string name="category">category</string>
+    <string name="name">name</string>
+    <string name="id">id</string>
 </resources>
