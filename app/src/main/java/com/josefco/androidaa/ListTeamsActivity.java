@@ -97,7 +97,6 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         if (miIntent!=null){
             startActivity(miIntent);
         }
-
     }
 
 
@@ -141,14 +140,25 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         switch (item.getItemId()) {
             case R.id.delete_team:
                 deleteTeam(team);
-                Toast.makeText(this,"Borrar",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Borrar",Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.edit_team:
-                // hacer algo
+                team = teams.get(info.position);
+                Intent intent = new Intent(ListTeamsActivity.this, AddTeamActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("team", team);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                Toast.makeText(this,"Editar",Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void getInfoToEdit() {
+
+
     }
 
     private void deleteTeam(Team team) {
@@ -171,37 +181,11 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         Toast.makeText(getApplicationContext(),informacion,Toast.LENGTH_SHORT).show();
 
         Team team = teams.get(position);
-
         Intent intent = new Intent(ListTeamsActivity.this, DetailsTeamActivity.class);
-
         Bundle bundle = new Bundle();
         bundle.putSerializable("team", team);
-
         intent.putExtras(bundle);
         startActivity(intent);
-
-
-
-        /*Team team=teams.get(position);
-
-        Intent intent=new Intent(ListTeamsActivity.this,DetailsTeamActivity.class);
-
-        Bundle bundle=new Bundle();
-        bundle.putSerializable("team",team);
-
-        intent.putExtras(bundle);
-        startActivity(intent);*/
-
-        /*Team team = teams.get(position);
-
-
-        Intent intent = new Intent(this, DetailsTeamActivity.class);
-        intent.putExtra("team", team);*/
-        /*intent.putExtra("id_team", team.getId_team());
-        intent.putExtra("team_name",team.getName());
-        intent.putExtra("category",team.getCategory());*/
-
-        /*startActivity(intent);*/
 
     }
 

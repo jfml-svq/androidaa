@@ -12,18 +12,71 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_listTeamAdd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/list_teams" />
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/btn_listTeamAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.5"
+                android:onClick="onClick"
+                android:text="@string/list_teams" />
+
+            <Button
+                android:id="@+id/btn_addteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.5"
+                android:onClick="onClick"
+                android:text="@string/add_team" />
+
+            <Button
+                android:id="@+id/btn_editteam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.5"
+                android:onClick="onClick"
+                android:text="@string/edit_team" />
+
+        </LinearLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_addteam"
+            android:id=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= />
+
+        <Button
+            android:id=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="addteam"
             android:text="@string/add_team" />
+        <Button
+            android:id=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="addteam"
+            android:text= />
+
+    </LinearLayout>-->
 
         <EditText
             android:id="@+id/team_name"

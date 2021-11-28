@@ -8,6 +8,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.josefco.androidaa.domain.Team;
 
@@ -26,6 +27,11 @@ public interface TeamDao {
     @Query("SELECT * FROM team WHERE id_team = :id_team")
     Cursor getTeamByID(String id_team);
 
+    @Query("UPDATE TEAM SET name = :name, category = :category where id_team= :id_team")
+    void editTeam(String name, String category, int id_team);
+
+    @Update
+    void update (Team team);
 
     @Insert
     void insert (Team team);

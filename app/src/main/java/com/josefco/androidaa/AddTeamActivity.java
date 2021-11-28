@@ -18,7 +18,9 @@ import com.josefco.androidaa.domain.Team;
 public class AddTeamActivity extends AppCompatActivity {
 
 
-    private Button btn_listTeamAdd;
+    private Button btn_listTeamAdd, btn_editteam;
+
+
 
 
     @Override
@@ -27,11 +29,90 @@ public class AddTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_team);
 
         btn_listTeamAdd = findViewById(R.id.btn_listTeamAdd);
+        btn_editteam = findViewById(R.id.btn_editteam);
+
+        EditText etteamname = findViewById(R.id.team_name);
+        EditText etteamcategory = findViewById(R.id.team_category);
 
         btn_listTeamAdd.setOnClickListener(v -> {
             Intent intentListTeams = new Intent(v.getContext(),ListTeamsActivity.class);
             startActivity(intentListTeams);
         });
+
+        Bundle objetoEnviado = getIntent().getExtras();
+        Team team = null;
+        if(objetoEnviado!=null){
+            team= (Team) objetoEnviado.getSerializable("team");
+            String id = Integer.toString(team.getId_team());
+            //tvidteam.setText(id);
+            etteamname.setText(team.getName());
+            etteamcategory.setText(team.getCategory());
+            /*editarteam();*/
+        }
+    }
+
+
+    //botones arriba activity
+    public void onClick(View view) {
+        Intent miIntent=null;
+        switch (view.getId()){
+            case R.id.btn_listTeamAdd:
+                miIntent=new Intent(this,AddTeamActivity.class);
+                break;
+            case R.id.btn_addteam:
+                addteam(view);
+                break;
+            case R.id.btn_editteam:
+                editTeam(view);
+                break;
+        }
+        if (miIntent!=null){
+            startActivity(miIntent);
+        }
+    }
+
+    private void editTeam(View view) {
+
+        EditText etteamname = findViewById(R.id.team_name);
+        EditText etteamcategory = findViewById(R.id.team_category);
+
+        Bundle objetoEnviado = getIntent().getExtras();
+        Team team = null;
+
+        if(objetoEnviado!=null){
+            team= (Team) objetoEnviado.getSerializable("team");
+            String id = Integer.toString(team.getId_team());
+            //tvidteam.setText(id);
+            /*etteamname.setText(team.getName());
+            etteamcategory.setText(team.getCategory());*/
+        }
+
+        /*String newTeamName = etteamname.getText().toString();
+        String newTeamCategory = etteamcategory.getText().toString();*/
+
+        try {
+
+            if (etteamname.getText().toString().equals("")){
+                Toast.makeText(this, getString(R.string.write_team), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String teamname = etteamname.getText().toString();
+            String teamcategory = etteamcategory.getText().toString();
+
+            int id_team = team.getId_team();
+
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+            db.teamDao().editTeam(teamname, teamcategory , id_team);
+            Toast.makeText(this,"Equipo editado",Toast.LENGTH_SHORT).show();
+
+            etteamname.setText("");
+            etteamcategory.setText("");
+        } catch(Exception e) {
+            Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 
