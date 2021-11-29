@@ -11,6 +11,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/team_details"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"/>
+
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/id"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -20,7 +29,7 @@
         android:id="@+id/tvidteam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"/>-->
 
     <TextView
         android:layout_width="match_parent"

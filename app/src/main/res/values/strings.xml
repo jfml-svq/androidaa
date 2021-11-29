@@ -15,14 +15,21 @@
     <string name="last_name_player">Player Last Name </string>
     <string name="phone">Phone</string>
     <string name="write_name_player">You must write the name of the player!!</string>
-    <string name="team">team</string>
+    <string name="team">Team</string>
     <string name="choose_team">You must select a Team</string>
     <string name="player_added">Player added</string>
     <string name="select_team">Select team</string>
     <string name="category">category</string>
-    <string name="name">name</string>
+    <string name="name">Name</string>
     <string name="id">id</string>
     <string name="players">Players</string>
     <string name="delete_player">Delete Player</string>
     <string name="edit_player">Edit Player</string>
+    <string name="last_name">Last Name</string>
+    <string name="list_player">List Player</string>
+    <string name="player_details">Player Details</string>
+    <string name="team_details">Team Details</string>
+    <string name="game_list">Game List</string>
+    <string name="player_list">Player list</string>
+    <string name="team_list">Team list</string>
 </resources>

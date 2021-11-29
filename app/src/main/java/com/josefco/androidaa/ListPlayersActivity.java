@@ -43,11 +43,30 @@ public class ListPlayersActivity extends AppCompatActivity {
         playerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, players);
         lvlistPlayer.setAdapter(playerAdapter);
 
+        lvlistPlayer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*String informacion="id: "+players.get(position).getId_player()+"\n";
+                informacion+="Nombre: "+players.get(position).getName()+"\n";
+                informacion+="Apellido: "+players.get(position).getLast_name()+"\n";
+                informacion+="Telefono: "+players.get(position).getPhone()+"\n";*/
 
+                //Toast.makeText(getApplicationContext(),informacion,Toast.LENGTH_SHORT).show();
+
+                Player player = players.get(position);
+                Intent intent = new Intent(ListPlayersActivity.this, DetailsPlayerActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("player", player);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         registerForContextMenu(lvlistPlayer);
 
     }
+
+
 
     @Override
     protected void onResume() {

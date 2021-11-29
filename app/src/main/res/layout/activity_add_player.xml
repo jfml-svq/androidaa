@@ -4,52 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".AddPlayerActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
+
+
+
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            tools:ignore="MissingConstraints">
-
-            <Button
-                android:id="@+id/btn_listPlayerAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_weight="0.5"
-                android:onClick="onClick"
-                android:text="@string/list_players" />
-
-            <Button
-                android:id="@+id/addPlayer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_weight="0.5"
-                android:onClick="onClick"
-                android:text="@string/add_player" />
-
-            <Button
-                android:id="@+id/editPlayer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="4dp"
-                android:layout_weight="0.5"
-                android:onClick="onClick"
-                android:text="@string/edit_player" />
-
-        </LinearLayout>
-
+            android:text="@string/name" />
 
         <EditText
             android:id="@+id/etNamePlayer"
@@ -59,6 +29,12 @@
             android:hint="@string/player_name"
             android:inputType="textPersonName" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/last_name" />
+
         <EditText
             android:id="@+id/etLastNamePlayer"
             android:layout_width="match_parent"
@@ -66,6 +42,12 @@
             android:ems="10"
             android:hint="@string/last_name_player"
             android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone" />
 
         <EditText
             android:id="@+id/etPhone"
@@ -75,10 +57,67 @@
             android:hint="@string/phone"
             android:inputType="textPersonName" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:text="@string/team" />
+
+        <TextView
+            android:id="@+id/tvTeam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/team"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/spTeams"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+        <Button
+            android:id="@+id/btn_listPlayerAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="0.5"
+            android:onClick="onClick"
+            android:text="@string/list_player" />
+
+        <Button
+            android:id="@+id/addPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="0.5"
+            android:onClick="onClick"
+            android:text="@string/add_player" />
+
+        <Button
+            android:id="@+id/editPlayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_weight="0.5"
+            android:onClick="onClick"
+            android:text="@string/edit_player" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

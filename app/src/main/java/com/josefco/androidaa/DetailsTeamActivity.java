@@ -33,28 +33,18 @@ public class DetailsTeamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details_team);
 
 
-        tvidteam = (TextView) findViewById(R.id.tvidteam);
+        //tvidteam = (TextView) findViewById(R.id.tvidteam);
         tvnameteam = (TextView) findViewById(R.id.tvnameteam);
         tvcategory = (TextView) findViewById(R.id.tvcategory);
 
-        /*Intent intent = getIntent();
-        String id_team = intent.getStringExtra("id_team");
-        String name_team = intent.getStringExtra("team_name");
-        String category = intent.getStringExtra("category");
-
-        /*tvidteam.setText(id_team);
-        tvnameteam.setText(name_team);
-        tvcategory.setText(category);
-
-        getDetailsTeam(id_team);*/
 
         Bundle objetoEnviado = getIntent().getExtras();
         Team team = null;
 
         if(objetoEnviado!=null){
             team= (Team) objetoEnviado.getSerializable("team");
-            String id = Integer.toString(team.getId_team());
-            tvidteam.setText(id);
+            //String id = Integer.toString(team.getId_team());
+            //tvidteam.setText(id);
             tvnameteam.setText(team.getName());
             tvcategory.setText(team.getCategory());
         }

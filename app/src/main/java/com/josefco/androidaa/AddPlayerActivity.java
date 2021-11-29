@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.josefco.androidaa.db.AppDatabase;
@@ -24,12 +25,12 @@ import java.util.ArrayList;
 
 public class AddPlayerActivity extends AppCompatActivity {
 
-    Button addPlayer;
+
     Spinner spinnerTeams;
     EditText etNamePlayer, etLastNamePlayer, etPhone;
+    TextView tvTeam;
     ArrayList<String> ListTeamsSpinner;
     ArrayList<Team> TeamsListSpinner;
-    AppDatabase conn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +42,18 @@ public class AddPlayerActivity extends AppCompatActivity {
         etNamePlayer = findViewById(R.id.etNamePlayer);
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
         etPhone = findViewById(R.id.etPhone);
+        tvTeam = findViewById(R.id.tvTeam);
 
         Bundle objetoEnviado = getIntent().getExtras();
         Player player = null;
         if(objetoEnviado!=null){
             player= (Player) objetoEnviado.getSerializable("player");
-            String id = Integer.toString(player.getId_player());
+            //String id = Integer.toString(player.getId_player());
             //tvidteam.setText(id);
             etNamePlayer.setText(player.getName());
             etLastNamePlayer.setText(player.getLast_name());
             etPhone.setText(player.getPhone());
+            tvTeam.setText(player.getName_Team());
         }
 
 
@@ -107,7 +110,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
         Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, getString(R.string.team)).allowMainThreadQueries().build();
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
         db.playerDao().insert(player);
 
             Toast.makeText(this, getString(R.string.player_added),Toast.LENGTH_SHORT).show();
@@ -115,6 +118,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             etNamePlayer.setText("");
             etLastNamePlayer.setText("");
             etPhone.setText("");
+            tvTeam.setText("");
             rellenarSpinner();
 
         }else{
@@ -173,6 +177,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             etNamePlayer.setText("");
             etLastNamePlayer.setText("");
             etPhone.setText("");
+            tvTeam.setText("");
             rellenarSpinner();
             }else{
                 Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();

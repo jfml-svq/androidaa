@@ -11,11 +11,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/list_games" />
+            android:text="@string/game_list"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
