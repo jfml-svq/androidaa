@@ -4,14 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.josefco.androidaa.util.ImageUtils;
+import com.squareup.picasso.Picasso;
 import com.josefco.androidaa.db.AppDatabase;
 import com.josefco.androidaa.domain.Team;
 
@@ -21,7 +26,7 @@ public class AddTeamActivity extends AppCompatActivity {
     private Button btn_listTeamAdd, btn_editteam;
 
 
-
+    private int SELECT_PICTURE_RESULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
+        ImageView ivimageTeamView = findViewById(R.id.image_team);
 
         btn_listTeamAdd.setOnClickListener(v -> {
             Intent intentListTeams = new Intent(v.getContext(),ListTeamsActivity.class);
@@ -47,7 +53,13 @@ public class AddTeamActivity extends AppCompatActivity {
             //tvidteam.setText(id);
             etteamname.setText(team.getName());
             etteamcategory.setText(team.getCategory());
-            /*editarteam();*/
+            //ivimageTeamView.setImageBitmap(ImageUtils.fromBitmapToByteArray(team.getImage())););
+            // /*editarteam();*/
+            Bitmap bmp = BitmapFactory.decodeByteArray(team.getImage(), 0, team.getImage().length);
+            ImageView image= (ImageView) findViewById(R.id.image_team);
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp,450,450,  false));
+
+
         }
     }
 
@@ -65,6 +77,9 @@ public class AddTeamActivity extends AppCompatActivity {
             case R.id.btn_editteam:
                 editTeam(view);
                 break;
+            case R.id.btn_addImage:
+                selectPicture(view);
+                break;
         }
         if (miIntent!=null){
             startActivity(miIntent);
@@ -75,6 +90,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
+        ImageView ivimageTeamView= (ImageView) findViewById(R.id.image_team);
 
         Bundle objetoEnviado = getIntent().getExtras();
         Team team = null;
@@ -99,15 +115,17 @@ public class AddTeamActivity extends AppCompatActivity {
 
             String teamname = etteamname.getText().toString();
             String teamcategory = etteamcategory.getText().toString();
+            byte[] ivimageTeam = ImageUtils.fromImageViewToByteArray(ivimageTeamView);
 
             int id_team = team.getId_team();
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
-            db.teamDao().editTeam(teamname, teamcategory , id_team);
+            db.teamDao().editTeam(teamname, teamcategory , id_team, ivimageTeam);
             Toast.makeText(this,"Equipo editado",Toast.LENGTH_SHORT).show();
 
             etteamname.setText("");
             etteamcategory.setText("");
+            ivimageTeamView.setImageResource(android.R.color.transparent);
         } catch(Exception e) {
             Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
         }
@@ -118,6 +136,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
+        ImageView ivimageTeamView = findViewById(R.id.image_team);
 
         if (etteamname.getText().toString().equals("")){
             Toast.makeText(this, getString(R.string.write_team), Toast.LENGTH_SHORT).show();
@@ -126,9 +145,10 @@ public class AddTeamActivity extends AppCompatActivity {
 
         String teamname = etteamname.getText().toString();
         String teamcategory = etteamcategory.getText().toString();
+        byte[] ivimageTeam = ImageUtils.fromImageViewToByteArray(ivimageTeamView);
 
         int id_team = 0;
-        Team team = new Team(id_team, teamname, teamcategory);
+        Team team = new Team(id_team, teamname, teamcategory, ivimageTeam);
 
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
         db.teamDao().insert(team);
@@ -136,9 +156,24 @@ public class AddTeamActivity extends AppCompatActivity {
 
         etteamname.setText("");
         etteamcategory.setText("");
-
+        ivimageTeamView.setImageResource(android.R.color.transparent);
     }
 
+    public void selectPicture(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, SELECT_PICTURE_RESULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == SELECT_PICTURE_RESULT) && (resultCode == RESULT_OK)
+                && (data != null)) {
+            Picasso.get().load(data.getData()).noPlaceholder().centerCrop().fit()
+                    .into((ImageView) findViewById(R.id.image_team));
+
+        }
+    }
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -159,10 +194,10 @@ public class AddTeamActivity extends AppCompatActivity {
                 Intent intentListGamee = new Intent(this, ListGamesActivity.class);
                 startActivity(intentListGamee);
                 return true;
-            case R.id.addTeam:
+            /*case R.id.addTeam:
                 Intent intentAddTeamm= new Intent(this, AddTeamActivity.class);
                 startActivity(intentAddTeamm);
-                return true;
+                return true;*/
             case R.id.addPlayer:
                 Intent intentAddPlayerr= new Intent(this, AddPlayerActivity.class);
                 startActivity(intentAddPlayerr);

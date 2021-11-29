@@ -28,8 +28,8 @@ public interface TeamDao {
     @Query("SELECT * FROM team WHERE id_team = :id_team")
     Cursor getTeamByID(String id_team);
 
-    @Query("UPDATE TEAM SET name = :name, category = :category where id_team= :id_team")
-    void editTeam(String name, String category, int id_team);
+    @Query("UPDATE TEAM SET name = :name, category = :category, image = :image where id_team= :id_team")
+    void editTeam(String name, String category, int id_team, byte[] image);
 
     @Update
     void update (Team team);

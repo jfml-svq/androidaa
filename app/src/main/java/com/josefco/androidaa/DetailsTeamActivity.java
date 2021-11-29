@@ -5,10 +5,13 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,8 @@ import android.widget.Toast;
 import com.josefco.androidaa.db.AppDatabase;
 import com.josefco.androidaa.domain.Player;
 import com.josefco.androidaa.domain.Team;
+import com.josefco.androidaa.util.ImageUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +28,7 @@ import java.util.List;
 public class DetailsTeamActivity extends AppCompatActivity {
 
     TextView tvidteam, tvnameteam, tvcategory;
+    ImageView ivimageteam;
     ArrayList<Team> detailsteamlist;
     public List<Player> players;
     private ArrayAdapter<Player> playerAdapter;
@@ -36,6 +42,8 @@ public class DetailsTeamActivity extends AppCompatActivity {
         //tvidteam = (TextView) findViewById(R.id.tvidteam);
         tvnameteam = (TextView) findViewById(R.id.tvnameteam);
         tvcategory = (TextView) findViewById(R.id.tvcategory);
+        //ivimageteam = (ImageView) findViewById(R.id.ivImageTeam);
+
 
 
         Bundle objetoEnviado = getIntent().getExtras();
@@ -47,6 +55,21 @@ public class DetailsTeamActivity extends AppCompatActivity {
             //tvidteam.setText(id);
             tvnameteam.setText(team.getName());
             tvcategory.setText(team.getCategory());
+
+            //ivimageteam.setImageBitmap(ImageUtils.fromBitmapToByteArray(team.getImage()));
+
+            Bitmap bmp = BitmapFactory.decodeByteArray(team.getImage(), 0, team.getImage().length);
+            ImageView image = (ImageView) findViewById(R.id.ivImageTeam);
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, 100, 100, false));
+
+            //Bitmap bitmap = BitmapFactory.decodeResource(getResources(),image);
+
+            // Set ImageView image as a Bitmap
+            //ivimageteam.setImageBitmap(image);
+
+            //Picasso.get().load(team.getImage()).into(ivimageteam);
+
+            //ivimageteam.setImageBitmap(ImageUtils.fromBitmapToByteArray(team.getImage()));
         }
 
         players = new ArrayList<>();
@@ -94,10 +117,10 @@ public class DetailsTeamActivity extends AppCompatActivity {
                 Intent intentListGamee = new Intent(this, ListGamesActivity.class);
                 startActivity(intentListGamee);
                 return true;
-            case R.id.addTeam:
+            /*case R.id.addTeam:
                 Intent intentAddTeamm= new Intent(this, AddTeamActivity.class);
                 startActivity(intentAddTeamm);
-                return true;
+                return true;*/
             case R.id.addPlayer:
                 Intent intentAddPlayerr= new Intent(this, AddPlayerActivity.class);
                 startActivity(intentAddPlayerr);

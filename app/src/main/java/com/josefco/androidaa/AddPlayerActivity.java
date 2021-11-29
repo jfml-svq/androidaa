@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.josefco.androidaa.db.AppDatabase;
 import com.josefco.androidaa.domain.Player;
 import com.josefco.androidaa.domain.Team;
+import com.josefco.androidaa.util.ImageUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -29,8 +32,11 @@ public class AddPlayerActivity extends AppCompatActivity {
     Spinner spinnerTeams;
     EditText etNamePlayer, etLastNamePlayer, etPhone;
     TextView tvTeam;
+    ImageView ivimagePlayer;
     ArrayList<String> ListTeamsSpinner;
     ArrayList<Team> TeamsListSpinner;
+
+    private int SELECT_PICTURE_RESULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         spinnerTeams = findViewById(R.id.spTeams);
         etNamePlayer = findViewById(R.id.etNamePlayer);
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
+        ivimagePlayer = findViewById(R.id.image_player);
         etPhone = findViewById(R.id.etPhone);
         tvTeam = findViewById(R.id.tvTeam);
 
@@ -81,12 +88,15 @@ public class AddPlayerActivity extends AppCompatActivity {
         String namePlayer = etNamePlayer.getText().toString();
         String lastNamePlayer = etLastNamePlayer.getText().toString();
         String phonePlayer = etPhone.getText().toString();
+        ImageView ivimagePlayerView = findViewById(R.id.image_player);
+
+
 
 
         int id_player = 0;
         final String team_name;
     //SPINNERNENRNENRER
-        spinnerTeams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinnerTeams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             }
@@ -95,7 +105,9 @@ public class AddPlayerActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+
+        byte[] ivimagePlayer = ImageUtils.fromImageViewToByteArray(ivimagePlayerView);
 
         int idSpinner= (int) spinnerTeams.getSelectedItemId();
         /**
@@ -108,7 +120,9 @@ public class AddPlayerActivity extends AppCompatActivity {
             team_name = TeamsListSpinner.get(idSpinner - 1).getName();
             Log.i("name team", team_name + "");
 
-        Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name);
+
+
+        Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name, ivimagePlayer);
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
         db.playerDao().insert(player);
@@ -132,9 +146,11 @@ public class AddPlayerActivity extends AppCompatActivity {
         etNamePlayer = findViewById(R.id.etNamePlayer);
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
         etPhone = findViewById(R.id.etPhone);
+        ImageView ivimagePlayerView = findViewById(R.id.image_player);
 
         Bundle objetoEnviado = getIntent().getExtras();
         Player player = null;
+
 
         if(objetoEnviado!=null){
             player= (Player) objetoEnviado.getSerializable("player");
@@ -152,7 +168,9 @@ public class AddPlayerActivity extends AppCompatActivity {
             String playerName = etNamePlayer.getText().toString();
             String playerLastName = etLastNamePlayer.getText().toString();
             String playerPhone = etPhone.getText().toString();
+            byte[] ivImagePlayer = ImageUtils.fromImageViewToByteArray(ivimagePlayerView);
             final String team_name;
+
 
             int idSpinner= (int) spinnerTeams.getSelectedItemId();
             /**
@@ -168,10 +186,12 @@ public class AddPlayerActivity extends AppCompatActivity {
 
             //String playerTeam = spinnerTeams.getSelectedItem().toString();
 
+                //byte[] ivimageTeam = ImageUtils.fromImageViewToByteArray(ivimagePlayer);
+
             int id_team = player.getId_player();
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
-            db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team);
+                db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team, ivImagePlayer);
             Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
 
             etNamePlayer.setText("");
@@ -203,6 +223,9 @@ public class AddPlayerActivity extends AppCompatActivity {
             case R.id.editPlayer:
                 editPlayer(view);
                 break;
+            case R.id.btn_addImage:
+                selectPicture(view);
+                break;
         }
         if (miIntent!=null){
             startActivity(miIntent);
@@ -230,7 +253,21 @@ public class AddPlayerActivity extends AppCompatActivity {
         }
     }
 
-    //rellenar spinner con el equipo para editarlo
+    public void selectPicture(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, SELECT_PICTURE_RESULT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == SELECT_PICTURE_RESULT) && (resultCode == RESULT_OK)
+                && (data != null)) {
+            Picasso.get().load(data.getData()).noPlaceholder().centerCrop().fit()
+                    .into((ImageView) findViewById(R.id.image_player));
+
+        }
+    }
 
 
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -14,6 +14,7 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +37,8 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
     Button btnAddTeam, btnAddPlayer;
 
     private Button addteambtn;
+    ListView lvlistTeams;
+
 
 
     @Override
@@ -46,12 +49,15 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
 
         btnAddPlayer = findViewById(R.id.btnAddPlayer);
         addteambtn = findViewById(R.id.btnAddTeam);
-
+        lvlistTeams = findViewById(R.id.lvListTeams);
 
         teams = new ArrayList<>();
-        ListView lvlistTeams = findViewById(R.id.lvListTeams);
         teamAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, teams);
         lvlistTeams.setAdapter(teamAdapter);
+
+
+
+
 
         lvlistTeams.setOnItemClickListener(this);
 
@@ -81,6 +87,8 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
                 .fallbackToDestructiveMigration().build();
         teams.addAll(db.teamDao().getAll());
     }
+
+
 
 
     //botones arriba activity

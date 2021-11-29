@@ -3,10 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/addTeam"
-        android:icon="@drawable/add"
-        android:title="@string/add_team" />
-    <item
         android:id="@+id/listTeams"
         android:icon="@drawable/group"
         android:title="@string/list_teams"

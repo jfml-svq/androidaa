@@ -30,8 +30,8 @@ public interface PlayerDao {
     @Delete
     void delete(Player player);
 
-    @Query("UPDATE PLAYER SET name = :name, last_name = :last_name, phone = :phone, name_Team = :name_team where id_player= :id_player")
-    void editPlayer(String name, String last_name, String phone, String name_team, int id_player);
+    @Query("UPDATE PLAYER SET name = :name, last_name = :last_name, phone = :phone, name_Team = :name_team, image = :image where id_player= :id_player")
+    void editPlayer(String name, String last_name, String phone, String name_team, int id_player, byte[]image);
 
 
 

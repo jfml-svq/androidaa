@@ -1,11 +1,12 @@
 package com.josefco.androidaa.domain;
 
+import android.net.Uri;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class Team implements Serializable {
@@ -18,12 +19,15 @@ public class Team implements Serializable {
     private Date create_date;*/
     @ColumnInfo
     private String category;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
-    public Team(int id_team, String name /*Date create_date*/, String category) {
+    public Team(int id_team, String name /*Date create_date*/, String category, byte[] image) {
         this.id_team = id_team;
         this.name = name;
         /*this.create_date = create_date;*/
         this.category = category;
+        this.image = image;
     }
 
     /*public Team(String name, String category) {
@@ -64,6 +68,14 @@ public class Team implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     @Override

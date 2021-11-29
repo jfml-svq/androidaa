@@ -25,6 +25,8 @@ public class Player implements Serializable {
     @ColumnInfo
     //private int id_team;
     private String name_Team;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] image;
 
     /*public Player(int id_player, String name, String last_name, String phone) {
         this.id_player = id_player;
@@ -33,12 +35,13 @@ public class Player implements Serializable {
         this.phone = phone;
     }*/
 
-    public Player(int id_player, String name, String last_name, String phone, String name_Team) {
+    public Player(int id_player, String name, String last_name, String phone, String name_Team, byte[] image) {
         this.id_player = id_player;
         this.name = name;
         this.last_name = last_name;
         this.phone = phone;
         this.name_Team = name_Team;
+        this.image = image;
     }
 
     public Player(){
@@ -98,5 +101,13 @@ public class Player implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

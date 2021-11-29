@@ -58,10 +58,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.addTeam:
-                Intent intentAddTeam = new Intent(this,AddTeamActivity.class);
-                startActivity(intentAddTeam);
-                return true;
             case R.id.listTeams:
                 Intent intentListTeams = new Intent(this, ListTeamsActivity.class);
                 startActivity(intentListTeams);
