@@ -12,6 +12,7 @@ import androidx.room.Update;
 
 import com.josefco.androidaa.domain.Team;
 
+import java.util.Collection;
 import java.util.List;
 
 @Dao
@@ -40,4 +41,6 @@ public interface TeamDao {
     void delete(Team team);
 
 
+    @Query("Select * FROM TEAM WHERE id_team = :id_team")
+    List<Team> getNameTeam(int id_team);
 }

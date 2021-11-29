@@ -22,4 +22,7 @@
     <string name="category">category</string>
     <string name="name">name</string>
     <string name="id">id</string>
+    <string name="players">Players</string>
+    <string name="delete_player">Delete Player</string>
+    <string name="edit_player">Edit Player</string>
 </resources>

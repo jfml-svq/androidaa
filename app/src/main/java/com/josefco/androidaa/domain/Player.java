@@ -7,8 +7,10 @@ import androidx.room.PrimaryKey;
 
 import com.josefco.androidaa.R;
 
+import java.io.Serializable;
+
 @Entity
-public class Player {
+public class Player implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id_player;

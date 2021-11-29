@@ -42,6 +42,16 @@ public class AddPlayerActivity extends AppCompatActivity {
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
         etPhone = findViewById(R.id.etPhone);
 
+        Bundle objetoEnviado = getIntent().getExtras();
+        Player player = null;
+        if(objetoEnviado!=null){
+            player= (Player) objetoEnviado.getSerializable("player");
+            String id = Integer.toString(player.getId_player());
+            //tvidteam.setText(id);
+            etNamePlayer.setText(player.getName());
+            etLastNamePlayer.setText(player.getLast_name());
+            etPhone.setText(player.getPhone());
+        }
 
 
 
@@ -93,7 +103,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             Log.i("id spinner", idSpinner + "");
             Log.i("id spinner - 1", (idSpinner - 1) + "");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
             team_name = TeamsListSpinner.get(idSpinner - 1).getName();
-            Log.i("id team", team_name + "");
+            Log.i("name team", team_name + "");
 
         Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name);
 
@@ -111,9 +121,87 @@ public class AddPlayerActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void editPlayer(View view) {
+
+        etNamePlayer = findViewById(R.id.etNamePlayer);
+        etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
+        etPhone = findViewById(R.id.etPhone);
+
+        Bundle objetoEnviado = getIntent().getExtras();
+        Player player = null;
+
+        if(objetoEnviado!=null){
+            player= (Player) objetoEnviado.getSerializable("player");
+            String id = Integer.toString(player.getId_player());
+        }
 
 
+        try {
 
+            if (etNamePlayer.getText().toString().equals("")){
+                Toast.makeText(this, getString(R.string.write_name_player), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String playerName = etNamePlayer.getText().toString();
+            String playerLastName = etLastNamePlayer.getText().toString();
+            String playerPhone = etPhone.getText().toString();
+            final String team_name;
+
+            int idSpinner= (int) spinnerTeams.getSelectedItemId();
+            /**
+             * Valida la seleccion del spinner de equipos, si selecciona 0(selecciona) sale, si no entra con el id elegido.
+             */
+            if (idSpinner!=0) {
+                Log.i("size", ListTeamsSpinner.size() + "");
+                Log.i("id spinner", idSpinner + "");
+                Log.i("id spinner - 1", (idSpinner - 1) + "");//se resta 1 ya que se quiere obtener la posicion de la lista, no del combo
+                team_name = TeamsListSpinner.get(idSpinner - 1).getName();
+                Log.i("name team", team_name + "");
+
+
+            //String playerTeam = spinnerTeams.getSelectedItem().toString();
+
+            int id_team = player.getId_player();
+
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+            db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team);
+            Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
+
+            etNamePlayer.setText("");
+            etLastNamePlayer.setText("");
+            etPhone.setText("");
+            rellenarSpinner();
+            }else{
+                Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
+            }
+
+
+        } catch(Exception e) {
+            Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    //botones arriba activity
+    public void onClick(View view) {
+        Intent miIntent=null;
+        switch (view.getId()){
+            case R.id.btn_listPlayerAdd:
+                miIntent=new Intent(this,ListPlayersActivity.class);
+                break;
+            case R.id.addPlayer:
+                addPlayer(view);
+                break;
+            case R.id.editPlayer:
+                editPlayer(view);
+                break;
+        }
+        if (miIntent!=null){
+            startActivity(miIntent);
+        }
     }
 
     //Creacion del spinner con los equips de la base de datos
@@ -136,6 +224,9 @@ public class AddPlayerActivity extends AppCompatActivity {
             ListTeamsSpinner.add(TeamsListSpinner.get(i).getId_team()+" - " + TeamsListSpinner.get(i).getName());
         }
     }
+
+    //rellenar spinner con el equipo para editarlo
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

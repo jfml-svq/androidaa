@@ -167,7 +167,8 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         String name_Team = team.getName();
         db.playerDao().deletePlayerByNameTeam(name_Team);
         db.teamDao().delete(team);
-        teamAdapter.notifyDataSetChanged();
+        //teamAdapter.notifyDataSetChanged();
+        refreshList();
     }
 
 

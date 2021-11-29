@@ -5,15 +5,19 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.josefco.androidaa.db.AppDatabase;
 import com.josefco.androidaa.domain.Player;
+import com.josefco.androidaa.domain.Team;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +45,7 @@ public class ListPlayersActivity extends AppCompatActivity {
 
 
 
-
-
+        registerForContextMenu(lvlistPlayer);
 
     }
 
@@ -68,15 +71,7 @@ public class ListPlayersActivity extends AppCompatActivity {
     }
 
 
-    /*public void addPlayer(View v){
-        startActivity(new Intent(this, AddPlayerActivity.class));
-    }*/
 
-    /*private void addPlayer(){
-          Intent intentAddPlayers = new Intent(this,AddPlayerActivity.class);
-          startActivity(intentAddPlayers);
-          return;
-    }*/
 
 
     public void onClick(View view) {
@@ -92,8 +87,50 @@ public class ListPlayersActivity extends AppCompatActivity {
 
     }
 
+    //MENU CONTEXTUAL
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.contextual_players, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        Player player = playerAdapter.getItem(info.position);
+
+        switch (item.getItemId()) {
+            case R.id.delete_player:
+                deleteplayer(player);
+                Toast.makeText(this,"Borrar",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.edit_player:
+                player = players.get(info.position);
+                Intent intent = new Intent(ListPlayersActivity.this, AddPlayerActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("player", player);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                Toast.makeText(this,"Editar",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void deleteplayer(Player player) {
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+        db.playerDao().delete(player);
+        refreshList();
+
+    }
 
 
+    //MENU ACTION BAR
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.players_menu, menu);

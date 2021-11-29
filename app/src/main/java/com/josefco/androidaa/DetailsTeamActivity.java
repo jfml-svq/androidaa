@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.josefco.androidaa.db.AppDatabase;
+import com.josefco.androidaa.domain.Player;
 import com.josefco.androidaa.domain.Team;
 
 import java.util.ArrayList;
@@ -21,6 +24,8 @@ public class DetailsTeamActivity extends AppCompatActivity {
 
     TextView tvidteam, tvnameteam, tvcategory;
     ArrayList<Team> detailsteamlist;
+    public List<Player> players;
+    private ArrayAdapter<Player> playerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,32 +59,39 @@ public class DetailsTeamActivity extends AppCompatActivity {
             tvcategory.setText(team.getCategory());
         }
 
+        players = new ArrayList<>();
+        ListView lvlistPlayer = findViewById(R.id.lvListPlayers);
+        playerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, players);
+        lvlistPlayer.setAdapter(playerAdapter);
+
+        refreshList();
+
     }
 
-    /*private List<Team> getDetailsTeam(String id_team) {
+    public void refreshList() {
+        loadPlayers();
+        playerAdapter.notifyDataSetChanged();
+    }
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+    private void loadPlayers() {
 
+
+        Bundle objetoEnviado = getIntent().getExtras();
         Team team = null;
-        detailsteamlist =new ArrayList<Team>();
 
-        //Cursor cursor=db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_USUARIO,null);
-        Cursor cursor=db.teamDao().getTeamByID(id_team);
+        if(objetoEnviado!=null) {
+            team = (Team) objetoEnviado.getSerializable("team");
+            String id = Integer.toString(team.getId_team());
 
-        while (cursor.moveToNext()) {
-            team = new Team();
-            team.setId_team(cursor.getInt(0));
-            team.setName(cursor.getString(1));
-            team.setCategory(cursor.getString(2));
+
+            players.clear();
+            AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                    AppDatabase.class, "team").allowMainThreadQueries()
+                    .fallbackToDestructiveMigration().build();
+            players.addAll(db.playerDao().listPlayerbyTeam(Integer.parseInt(id)));
+
         }
-
-        tvidteam.setText(team.getId_team());
-        tvnameteam.setText(team.getName());
-        tvcategory.setText(team.getCategory());
-
-        return detailsteamlist;
-
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
