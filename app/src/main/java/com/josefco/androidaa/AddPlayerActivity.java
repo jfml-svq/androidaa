@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -30,7 +32,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
 
     Spinner spinnerTeams;
-    EditText etNamePlayer, etLastNamePlayer, etPhone;
+    EditText etNamePlayer, etLastNamePlayer, etPhone, etSquadNumber;
     TextView tvTeam;
     ImageView ivimagePlayer;
     ArrayList<String> ListTeamsSpinner;
@@ -49,6 +51,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
         ivimagePlayer = findViewById(R.id.image_player);
         etPhone = findViewById(R.id.etPhone);
+        etSquadNumber = findViewById(R.id.etSquadNumber);
         tvTeam = findViewById(R.id.tvTeam);
 
         Bundle objetoEnviado = getIntent().getExtras();
@@ -60,7 +63,13 @@ public class AddPlayerActivity extends AppCompatActivity {
             etNamePlayer.setText(player.getName());
             etLastNamePlayer.setText(player.getLast_name());
             etPhone.setText(player.getPhone());
+            String squad_number = Integer.toString(player.getSquad_number());
+            etSquadNumber.setText(squad_number);
             tvTeam.setText(player.getName_Team());
+
+            Bitmap bmp = BitmapFactory.decodeByteArray(player.getImage(), 0, player.getImage().length);
+            ImageView image= (ImageView) findViewById(R.id.image_player);
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp,250,250,  false));
         }
 
 
@@ -88,6 +97,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         String namePlayer = etNamePlayer.getText().toString();
         String lastNamePlayer = etLastNamePlayer.getText().toString();
         String phonePlayer = etPhone.getText().toString();
+        String squad_number = etSquadNumber.getText().toString();
         ImageView ivimagePlayerView = findViewById(R.id.image_player);
 
 
@@ -122,7 +132,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
 
 
-        Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name, ivimagePlayer);
+        Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name, Integer.parseInt(squad_number), ivimagePlayer);
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
         db.playerDao().insert(player);
@@ -134,6 +144,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             etPhone.setText("");
             tvTeam.setText("");
             rellenarSpinner();
+            ivimagePlayerView.setImageResource(android.R.color.transparent);
 
         }else{
 
@@ -146,6 +157,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         etNamePlayer = findViewById(R.id.etNamePlayer);
         etLastNamePlayer = findViewById(R.id.etLastNamePlayer);
         etPhone = findViewById(R.id.etPhone);
+        etSquadNumber = findViewById(R.id.etSquadNumber);
         ImageView ivimagePlayerView = findViewById(R.id.image_player);
 
         Bundle objetoEnviado = getIntent().getExtras();
@@ -168,6 +180,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             String playerName = etNamePlayer.getText().toString();
             String playerLastName = etLastNamePlayer.getText().toString();
             String playerPhone = etPhone.getText().toString();
+            String squad_number = etSquadNumber.getText().toString();
             byte[] ivImagePlayer = ImageUtils.fromImageViewToByteArray(ivimagePlayerView);
             final String team_name;
 
@@ -191,7 +204,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             int id_team = player.getId_player();
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
-                db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team, ivImagePlayer);
+                db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team, Integer.parseInt(squad_number), ivImagePlayer);
             Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
 
             etNamePlayer.setText("");

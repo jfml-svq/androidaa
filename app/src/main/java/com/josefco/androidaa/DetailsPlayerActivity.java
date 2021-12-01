@@ -3,9 +3,12 @@ package com.josefco.androidaa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.josefco.androidaa.domain.Player;
@@ -13,7 +16,7 @@ import com.josefco.androidaa.domain.Team;
 
 public class DetailsPlayerActivity extends AppCompatActivity {
 
-    TextView tvidplayer, tvnameplayer, tvlastnameplayer, tvphoneplayer, tvnameteamplayer;
+    TextView tvidplayer, tvnameplayer, tvlastnameplayer, tvphoneplayer, tvsquadnumber, tvnameteamplayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class DetailsPlayerActivity extends AppCompatActivity {
         tvnameplayer = findViewById(R.id.tvnameplayer);
         tvlastnameplayer = findViewById(R.id.tvlastnameplayer);
         tvphoneplayer = findViewById(R.id.tvphoneplayer);
+        tvsquadnumber = findViewById(R.id.tvsquadnumber);
         tvnameteamplayer = findViewById(R.id.tvnameteamplayer);
 
         Bundle objetoEnviado = getIntent().getExtras();
@@ -34,7 +38,12 @@ public class DetailsPlayerActivity extends AppCompatActivity {
             tvnameplayer.setText(player.getName());
             tvlastnameplayer.setText(player.getLast_name());
             tvphoneplayer.setText(player.getPhone());
+            tvsquadnumber.setText(String.valueOf(player.getSquad_number()));
             tvnameteamplayer.setText(player.getName_Team());
+
+            Bitmap bmp = BitmapFactory.decodeByteArray(player.getImage(), 0, player.getImage().length);
+            ImageView image = (ImageView) findViewById(R.id.ivImagePlayerm);
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp, 150, 150, false));
         }
 
     }

@@ -20,10 +20,11 @@ public class Player implements Serializable {
     private String last_name;
     @ColumnInfo
     private String phone;
+    @ColumnInfo
+    private int squad_number;
     /*@ColumnInfo
     private Date birthday;*/
     @ColumnInfo
-    //private int id_team;
     private String name_Team;
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
@@ -35,12 +36,13 @@ public class Player implements Serializable {
         this.phone = phone;
     }*/
 
-    public Player(int id_player, String name, String last_name, String phone, String name_Team, byte[] image) {
+    public Player(int id_player, String name, String last_name, String phone, String name_Team, int squad_number, byte[] image) {
         this.id_player = id_player;
         this.name = name;
         this.last_name = last_name;
         this.phone = phone;
         this.name_Team = name_Team;
+        this.squad_number = squad_number;
         this.image = image;
     }
 
@@ -50,10 +52,16 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return name + " " + last_name + " / Team - " + name_Team;
+        return "Name: "+name + " " + last_name + " / Team: " + name_Team;
     }
 
+    public int getSquad_number() {
+        return squad_number;
+    }
 
+    public void setSquad_number(int squad_number) {
+        this.squad_number = squad_number;
+    }
 
     /*public Date getDate_birth() {
         return birthday;

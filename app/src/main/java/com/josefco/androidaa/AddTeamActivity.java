@@ -57,7 +57,7 @@ public class AddTeamActivity extends AppCompatActivity {
             // /*editarteam();*/
             Bitmap bmp = BitmapFactory.decodeByteArray(team.getImage(), 0, team.getImage().length);
             ImageView image= (ImageView) findViewById(R.id.image_team);
-            image.setImageBitmap(Bitmap.createScaledBitmap(bmp,450,450,  false));
+            image.setImageBitmap(Bitmap.createScaledBitmap(bmp,250,250,  false));
 
 
         }

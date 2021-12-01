@@ -89,10 +89,6 @@ public class ListPlayersActivity extends AppCompatActivity {
         players.addAll(db.playerDao().listPlayers());
     }
 
-
-
-
-
     public void onClick(View view) {
         Intent miIntent=null;
         switch (view.getId()){
