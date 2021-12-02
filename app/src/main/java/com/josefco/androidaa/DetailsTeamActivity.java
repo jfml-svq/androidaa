@@ -102,22 +102,16 @@ public class DetailsTeamActivity extends AppCompatActivity {
     }*/
 
     /*private void loadPlayers() {
-
-
         Bundle objetoEnviado = getIntent().getExtras();
         Team team = null;
-
         if(objetoEnviado!=null) {
             team = (Team) objetoEnviado.getSerializable("team");
             String id = Integer.toString(team.getId_team());
-
-
             players.clear();
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                     AppDatabase.class, "team").allowMainThreadQueries()
                     .fallbackToDestructiveMigration().build();
             players.addAll(db.playerDao().listPlayerbyTeam(Integer.parseInt(id)));
-
         }
     }*/
 

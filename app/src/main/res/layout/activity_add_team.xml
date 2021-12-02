@@ -38,7 +38,7 @@
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:onClick="selectPicture"
-            android:scaleType="center"
+            android:scaleType="centerInside"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

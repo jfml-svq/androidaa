@@ -47,7 +47,7 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_list_teams);
 
 
-        btnAddPlayer = findViewById(R.id.btnAddPlayer);
+        //btnAddPlayer = findViewById(R.id.btnAddPlayer);
         addteambtn = findViewById(R.id.btnAddTeam);
         lvlistTeams = findViewById(R.id.lvListTeams);
 

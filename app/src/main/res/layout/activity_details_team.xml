@@ -30,8 +30,8 @@
 
             <ImageView
                 android:id="@+id/ivImageTeam"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 tools:srcCompat="@tools:sample/avatars"
                 android:layout_marginEnd="15dp"/>
 

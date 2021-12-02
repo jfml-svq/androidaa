@@ -105,15 +105,13 @@ public class AddPlayerActivity extends AppCompatActivity {
 
         int id_player = 0;
         final String team_name;
-    //SPINNERNENRNENRER
+        //SPINNERNENRNENRER
         /*spinnerTeams.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });*/
 
@@ -132,10 +130,10 @@ public class AddPlayerActivity extends AppCompatActivity {
 
 
 
-        Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name, Integer.parseInt(squad_number), ivimagePlayer);
+            Player player = new Player(id_player, namePlayer, lastNamePlayer, phonePlayer, team_name, Integer.parseInt(squad_number), ivimagePlayer);
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
-        db.playerDao().insert(player);
+            db.playerDao().insert(player);
 
             Toast.makeText(this, getString(R.string.player_added),Toast.LENGTH_SHORT).show();
 
@@ -148,7 +146,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
         }else{
 
-        Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
         }
     }
 
@@ -197,21 +195,21 @@ public class AddPlayerActivity extends AppCompatActivity {
                 Log.i("name team", team_name + "");
 
 
-            //String playerTeam = spinnerTeams.getSelectedItem().toString();
+                //String playerTeam = spinnerTeams.getSelectedItem().toString();
 
                 //byte[] ivimageTeam = ImageUtils.fromImageViewToByteArray(ivimagePlayer);
 
-            int id_team = player.getId_player();
+                int id_team = player.getId_player();
 
-            AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
+                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
                 db.playerDao().editPlayer(playerName, playerLastName , playerPhone, team_name, id_team, Integer.parseInt(squad_number), ivImagePlayer);
-            Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
 
-            etNamePlayer.setText("");
-            etLastNamePlayer.setText("");
-            etPhone.setText("");
-            tvTeam.setText("");
-            rellenarSpinner();
+                etNamePlayer.setText("");
+                etLastNamePlayer.setText("");
+                etPhone.setText("");
+                tvTeam.setText("");
+                rellenarSpinner();
             }else{
                 Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
             }
