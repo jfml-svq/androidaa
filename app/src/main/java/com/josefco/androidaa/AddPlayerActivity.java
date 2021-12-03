@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -239,11 +240,16 @@ public class AddPlayerActivity extends AppCompatActivity {
             case R.id.btn_addImage:
                 selectPicture(view);
                 break;
+            case R.id.btn_addPhoto:
+                openCamera();
+                break;
         }
         if (miIntent!=null){
             startActivity(miIntent);
         }
     }
+
+
 
     //Creacion del spinner con los equips de la base de datos
     private void listTeams() {
@@ -268,17 +274,29 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     public void selectPicture(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, SELECT_PICTURE_RESULT);
+        //startActivityForResult(intent, SELECT_PICTURE_RESULT);
+        startActivityForResult(intent, 1);
+    }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, 2);
+        //}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == SELECT_PICTURE_RESULT) && (resultCode == RESULT_OK)
+        if ((requestCode == 1/*SELECT_PICTURE_RESULT*/) && (resultCode == RESULT_OK)
                 && (data != null)) {
             Picasso.get().load(data.getData()).noPlaceholder().centerCrop().fit()
                     .into((ImageView) findViewById(R.id.image_player));
 
+        }else if ((requestCode == 2) && (resultCode == RESULT_OK)&&(data != null)) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ivimagePlayer.setImageBitmap(imageBitmap);
         }
     }
 

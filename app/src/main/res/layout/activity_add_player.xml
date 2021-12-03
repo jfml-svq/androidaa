@@ -104,18 +104,28 @@
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:onClick="selectPicture"
-                android:scaleType="centerInside"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <Button
                 android:id="@+id/btn_addImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick"
+                android:text="@string/add_image"
+                android:layout_marginStart="6dp"/>
+            <Button
+                android:id="@+id/btn_addPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
                 android:text="@string/add_photo"
                 android:layout_marginStart="6dp"/>
+        </LinearLayout>
         </LinearLayout>
 
         <!--app:srcCompat="@android:drawable/ic_menu_add"-->

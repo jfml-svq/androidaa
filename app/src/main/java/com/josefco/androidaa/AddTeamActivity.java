@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ public class AddTeamActivity extends AppCompatActivity {
 
     private Button btn_listTeamAdd, btn_editteam;
 
+    ImageView ivimageTeamView;
+
 
     private int SELECT_PICTURE_RESULT = 1;
 
@@ -38,7 +41,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
-        ImageView ivimageTeamView = findViewById(R.id.image_team);
+        ImageView ivimageTeamView = findViewById(R.id.ivimageteamAT);
 
         btn_listTeamAdd.setOnClickListener(v -> {
             Intent intentListTeams = new Intent(v.getContext(),ListTeamsActivity.class);
@@ -56,7 +59,7 @@ public class AddTeamActivity extends AppCompatActivity {
             //ivimageTeamView.setImageBitmap(ImageUtils.fromBitmapToByteArray(team.getImage())););
             // /*editarteam();*/
             Bitmap bmp = BitmapFactory.decodeByteArray(team.getImage(), 0, team.getImage().length);
-            ImageView image= (ImageView) findViewById(R.id.image_team);
+            ImageView image= (ImageView) findViewById(R.id.ivimageteamAT);
             image.setImageBitmap(Bitmap.createScaledBitmap(bmp,250,250,  false));
 
 
@@ -80,6 +83,9 @@ public class AddTeamActivity extends AppCompatActivity {
             case R.id.btn_addImage:
                 selectPicture(view);
                 break;
+            case R.id.btn_addPhoto:
+                openCamera();
+                break;
         }
         if (miIntent!=null){
             startActivity(miIntent);
@@ -90,7 +96,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
-        ImageView ivimageTeamView= (ImageView) findViewById(R.id.image_team);
+        ImageView ivimageTeamView= (ImageView) findViewById(R.id.ivimageteamAT);
 
         Bundle objetoEnviado = getIntent().getExtras();
         Team team = null;
@@ -136,7 +142,7 @@ public class AddTeamActivity extends AppCompatActivity {
 
         EditText etteamname = findViewById(R.id.team_name);
         EditText etteamcategory = findViewById(R.id.team_category);
-        ImageView ivimageTeamView = findViewById(R.id.image_team);
+        ImageView ivimageTeamView = findViewById(R.id.ivimageteamAT);
 
         if (etteamname.getText().toString().equals("")){
             Toast.makeText(this, getString(R.string.write_team), Toast.LENGTH_SHORT).show();
@@ -161,17 +167,28 @@ public class AddTeamActivity extends AppCompatActivity {
 
     public void selectPicture(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, SELECT_PICTURE_RESULT);
+        startActivityForResult(intent, 1);
+    }
+
+    private void openCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+        startActivityForResult(takePictureIntent, 2);
+        //}
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ((requestCode == SELECT_PICTURE_RESULT) && (resultCode == RESULT_OK)
+        if ((requestCode == 1) && (resultCode == RESULT_OK)
                 && (data != null)) {
             Picasso.get().load(data.getData()).noPlaceholder().centerCrop().fit()
-                    .into((ImageView) findViewById(R.id.image_team));
-
+                    .into((ImageView) findViewById(R.id.ivimageteamAT));
+        }else if ((requestCode == 2) && (resultCode == RESULT_OK)&&(data != null)) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ImageView ivimageTeamView = findViewById(R.id.ivimageteamAT);
+            ivimageTeamView.setImageBitmap(imageBitmap);
         }
     }
 
