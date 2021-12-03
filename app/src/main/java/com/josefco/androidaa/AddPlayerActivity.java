@@ -141,6 +141,7 @@ public class AddPlayerActivity extends AppCompatActivity {
             etLastNamePlayer.setText("");
             etPhone.setText("");
             tvTeam.setText("");
+            etSquadNumber.setText("");
             rellenarSpinner();
             ivimagePlayerView.setImageResource(android.R.color.transparent);
 
@@ -209,6 +210,7 @@ public class AddPlayerActivity extends AppCompatActivity {
                 etLastNamePlayer.setText("");
                 etPhone.setText("");
                 tvTeam.setText("");
+                etSquadNumber.setText("");
                 rellenarSpinner();
             }else{
                 Toast.makeText(getApplicationContext(), getString(R.string.choose_team),Toast.LENGTH_LONG).show();
@@ -221,7 +223,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     }
 
-    //botones arriba activity
+    //botones abajo activity
     public void onClick(View view) {
         Intent miIntent=null;
         switch (view.getId()){

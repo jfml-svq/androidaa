@@ -164,10 +164,6 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         }
     }
 
-    private void getInfoToEdit() {
-
-
-    }
 
     private void deleteTeam(Team team) {
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();

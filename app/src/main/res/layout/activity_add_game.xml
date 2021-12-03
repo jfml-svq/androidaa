@@ -6,4 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".AddGameActivity">
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date" />
+
+            <EditText
+                android:id="@+id/etdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date"
+                android:hint="@string/dd_mm_yyyy"/>
+
+            <TextView
+                android:id="@+id/tvlocalteam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/local_team" />
+
+            <Spinner
+                android:id="@+id/splocalteam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvvisitorteam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/visitor_team" />
+
+            <Spinner
+                android:id="@+id/spvisitorteam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:id="@+id/cbplayed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/played" />
+            <Button
+                android:id="@+id/btn_addgame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_weight="0.5"
+                android:onClick="onClick"
+                android:text="@string/add_games" />
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

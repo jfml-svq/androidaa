@@ -65,16 +65,6 @@
         tools:layout_editor_absoluteX="15dp">
 
         <Button
-            android:id="@+id/btn_listTeamAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="0.5"
-            android:onClick="onClick"
-            android:text="@string/list_teams" />
-
-        <Button
             android:id="@+id/btn_addteam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,6 +83,15 @@
             android:layout_weight="0.5"
             android:onClick="onClick"
             android:text="@string/edit" />
+        <Button
+            android:id="@+id/btn_listTeamAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="0.5"
+            android:onClick="onClick"
+            android:text="@string/list_teams" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

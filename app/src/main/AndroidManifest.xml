@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAA">
         <activity
+            android:name=".DetailsGamesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditGamesActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddGameActivity"
             android:exported="false" />
         <activity

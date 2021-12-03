@@ -36,4 +36,16 @@
     <string name="edit">Edit</string>
     <string name="add_photo">Add Photo</string>
     <string name="squad_number">Squad Number</string>
+    <string name="visitor_team">Visitor team</string>
+    <string name="local_team">Local team</string>
+    <string name="date">Date</string>
+    <string name="played">Played</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="date_needed">You must add a date!</string>
+    <string name="must_dif_team">Teams can\'t be the same!</string>
+    <string name="team_added">Team added!</string>
+    <string name="edit_game">Edit Game</string>
+    <string name="delete_game">Delete game</string>
+    <string name="num_game">Nº game</string>
+    <string name="game_details">Game Details</string>
 </resources>
