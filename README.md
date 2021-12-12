@@ -27,4 +27,4 @@ que se podran ver en la pantalla de detalles del equipo.
 
 - Cuenta con un menu action bar con las principales clases para poder navegas mas comodamente.
 - En las pantallas del equipo y jugadores se pueden añadir imagenes, ya sea que tengamos en el dispositivo o podemos usar la camara del telefono.
-- Mapa (en desarrollo)
+- Mapa para la parte de los partidos, se puede añadir marca en editar y visualizar en detalles.
