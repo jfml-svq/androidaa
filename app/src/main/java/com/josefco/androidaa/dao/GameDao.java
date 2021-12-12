@@ -7,6 +7,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.josefco.androidaa.domain.Game;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public interface GameDao {
 
     @Query("UPDATE GAME SET /*id_game = :id_game,*/ fecha = :fecha, local_team = :local_team, visit_team = :visit_team, played = :played WHERE id_game = :id_game")
     void update(String fecha, String local_team,String visit_team ,boolean played, int id_game);
+
+    //@Query("INSERT INTO GAME (latitudeGame,longitudeGame) VALUES (:latitudGame,:longitudGame) WHERE id_game =")
+    @Query("UPDATE GAME SET latitudeGame = :latitudeGame, longitudeGame = :longitudeGame WHERE id_game = :id_game")
+    void insertLocation(double latitudeGame, double longitudeGame, int id_game);
 
 }

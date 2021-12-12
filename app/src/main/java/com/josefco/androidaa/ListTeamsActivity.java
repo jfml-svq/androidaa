@@ -157,7 +157,7 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
                 bundle.putSerializable("team", team);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                Toast.makeText(this,"Editar",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,getString(R.string.edit),Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onContextItemSelected(item);

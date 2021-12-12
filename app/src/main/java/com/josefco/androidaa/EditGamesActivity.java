@@ -60,11 +60,11 @@ public class EditGamesActivity extends AppCompatActivity {
 
             AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "team").allowMainThreadQueries().build();
             db.gameDao().update(date , tvlocal_team, tvvisitor_team, played,Integer.parseInt(id_team));
-            Toast.makeText(this,"Player edited",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.player_edited),Toast.LENGTH_SHORT).show();
 
         }catch (Exception e){
 
-            Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.Error,Toast.LENGTH_SHORT).show();
 
         }
 
@@ -72,13 +72,25 @@ public class EditGamesActivity extends AppCompatActivity {
 
     }
 
-
-
     public void onClick(View view) {
         Intent miIntent=null;
         switch (view.getId()){
             case R.id.btn_edit_gameEG:
                 editGame();
+                break;
+            case R.id.btn_addLocation:
+                Intent intent = new Intent(EditGamesActivity.this, AddGameLocationActivity.class);
+                Bundle objetoEnviado = getIntent().getExtras();
+                Game game = null;
+                if(objetoEnviado!=null){
+                    game= (Game) objetoEnviado.getSerializable("game");
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("game", game);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    //Toast.makeText(this,game.getVisit_team(), Toast.LENGTH_SHORT).show();
+                }
+                startActivity(intent);
                 break;
         }
         if (miIntent!=null){

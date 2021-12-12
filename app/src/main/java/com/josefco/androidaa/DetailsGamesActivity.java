@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.josefco.androidaa.domain.Game;
 import com.josefco.androidaa.domain.Player;
@@ -42,6 +44,29 @@ public class DetailsGamesActivity extends AppCompatActivity {
             cbplayed.setEnabled(false);
         }
 
+    }
+
+    public void onClick(View view) {
+        Intent miIntent=null;
+        switch (view.getId()){
+            case R.id.btn_seeLocation:
+                Intent intent = new Intent(DetailsGamesActivity.this, SeeGameLocationActivity.class);
+                Bundle objetoEnviado = getIntent().getExtras();
+                Game game = null;
+                if(objetoEnviado!=null){
+                    game= (Game) objetoEnviado.getSerializable("game");
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("game", game);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    //Toast.makeText(this,game.getVisit_team(), Toast.LENGTH_SHORT).show();
+                }
+                startActivity(intent);
+                break;
+        }
+        if (miIntent!=null){
+            startActivity(miIntent);
+        }
     }
 
 

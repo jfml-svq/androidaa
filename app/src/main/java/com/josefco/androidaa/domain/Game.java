@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.josefco.androidaa.R;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +28,12 @@ public class Game implements Serializable {
     private String visit_team;
     @ColumnInfo
     private Boolean played;
+    @ColumnInfo
+    private double latitudeGame;
+    @ColumnInfo
+    private double longitudeGame;
+
+
 
     public Game(int id_game, String fecha, String local_team, String visit_team, Boolean played) {
         this.id_game = id_game;
@@ -33,6 +42,8 @@ public class Game implements Serializable {
         this.visit_team = visit_team;
         this.played = played;
     }
+
+
 
     public Game() {
     }
@@ -75,6 +86,22 @@ public class Game implements Serializable {
 
     public void setPlayed(Boolean played) {
         this.played = played;
+    }
+
+    public double getLatitudeGame() {
+        return latitudeGame;
+    }
+
+    public void setLatitudeGame(double latitudeGame) {
+        this.latitudeGame = latitudeGame;
+    }
+
+    public double getLongitudeGame() {
+        return longitudeGame;
+    }
+
+    public void setLongitudeGame(double longitudeGame) {
+        this.longitudeGame = longitudeGame;
     }
 
     @Override

@@ -49,4 +49,21 @@
     <string name="num_game">Nº game</string>
     <string name="game_details">Game Details</string>
     <string name="add_image">Add image</string>
+    <string name="add_location">Add Location</string>
+    <string name="google_maps_key">AIzaSyA6WPpNnV_5wHDmLGJ6nYNGMHwSRd313R8</string>
+    <string name="see_location">See location</string>
+    <string name="game_location_created">Game location created</string>
+    <string name="one_marker">Only one marker per game</string>
+    <string name="local">\"Local: \"</string>
+    <string name="visitor">\" :Visitor \"</string>
+    <string name="game_num">\"Game nº \"</string>
+    <string name="vs">\" vs \"</string>
+    <string name="game_need_location">This game has no location yet.!</string>
+    <string name="player_edited">Player Edited</string>
+    <string name="Error">Error</string>
+    <string name="nameClass">\"Name: \"</string>
+    <string name="categoryClass">"Category: "</string>
+    <string name="teamClass">Team:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
