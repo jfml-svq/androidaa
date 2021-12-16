@@ -67,5 +67,5 @@
     <string name="teamClass">Equipo:</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-
+    <string name="game_added">Partido añadido!</string>
 </resources>

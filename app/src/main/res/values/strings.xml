@@ -66,4 +66,5 @@
     <string name="teamClass">Team:</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="game_added">Game added!</string>
 </resources>

@@ -94,7 +94,7 @@ public class AddGameActivity extends AppCompatActivity {
                     AppDatabase.class, "team").allowMainThreadQueries()
                     .fallbackToDestructiveMigration().build();
             db.gameDao().insert(game);
-            Toast.makeText(this, R.string.team_added , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.game_added , Toast.LENGTH_SHORT).show();
         }
 
         etdate.setText("");
