@@ -60,6 +60,8 @@ public class ListGamesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Toast.makeText(this, R.string.long_click_lists, Toast.LENGTH_SHORT).show();
     }
 
 

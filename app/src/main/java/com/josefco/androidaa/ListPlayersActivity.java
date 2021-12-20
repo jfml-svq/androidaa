@@ -64,6 +64,8 @@ public class ListPlayersActivity extends AppCompatActivity {
 
         registerForContextMenu(lvlistPlayer);
 
+        Toast.makeText(this, R.string.long_click_lists, Toast.LENGTH_SHORT).show();
+
     }
 
 

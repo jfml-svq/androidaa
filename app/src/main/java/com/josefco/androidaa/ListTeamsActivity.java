@@ -65,6 +65,8 @@ public class ListTeamsActivity extends AppCompatActivity implements AdapterView.
         // Registra el menú contextual a la lista de elementos*/
         registerForContextMenu(lvlistTeams);
 
+        Toast.makeText(this, R.string.long_click_lists, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
